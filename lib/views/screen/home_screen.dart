@@ -1,259 +1,183 @@
-// ignore_for_file: file_names
-
-import 'package:flutter/material.dart';
-import 'package:personal_website/utils/app_assets.dart';
-import 'package:personal_website/utils/app_colors.dart';
-import 'package:personal_website/utils/app_text_styles.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:personal_website/views/screen/about_me.dart';
-import 'package:personal_website/views/screen/contact_us.dart';
-import 'package:personal_website/views/screen/my_projects.dart';
-import 'package:personal_website/views/screen/my_services.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
+import 'package:personal_website/views/widgets/materialBtn.dart';
+import '../../utils/app_assets.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_text_styles.dart';
+import '../../utils/helper.dart';
+import '../widgets/profile_animation.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final socialButtons = <String>[
+    AppAssets.facebook,
+    AppAssets.twitter,
+    AppAssets.linkedIn,
+    AppAssets.instagram,
+    AppAssets.github,
+  ];
+
+  var socialBI;
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: AppColors.bgColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.bgColor,
-        toolbarHeight: 90,
-        titleSpacing: 100,
-        elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 60),
+    return HelperClass(
+      mobile: Column(
+        children: [
+          buildHomePersonalInfo(size),
+          SizedBox(height: 25.0),
+          const ProfileAnimation()
+        ],
+      ),
+      tablet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(child: buildHomePersonalInfo(size)),
+          const ProfileAnimation(),
+        ],
+      ),
+      desktop: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(child: buildHomePersonalInfo(size)),
+          const ProfileAnimation(),
+        ],
+      ),
+      paddingWidth: size.width * 0.1,
+      bgColor: Colors.transparent,
+    );
+  }
+
+  Column buildHomePersonalInfo(Size size) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        FadeInDown(
+          duration: const Duration(milliseconds: 1200),
+          child: Text(
+            'Hello, It\'s Me',
+            style: AppTextStyle.montserratStyle(color: Colors.white),
+          ),
+        ),
+        SizedBox(height: 15.0),
+        FadeInRight(
+          duration: const Duration(milliseconds: 1400),
+          child: Text(
+            'MAHDI NOURI',
+            style: AppTextStyle.headingStyles(),
+          ),
+        ),
+        SizedBox(height: 15.0),
+        FadeInLeft(
+          duration: const Duration(milliseconds: 1400),
           child: Row(
             children: [
-              const Text("Portfolio"),
-              const Spacer(),
               Text(
-                "Home",
-                style: AppTextStyle.headerTextStyle(),
+                'And I\'m a ',
+                style: AppTextStyle.montserratStyle(color: Colors.white),
               ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "About",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "Services",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "Portfolio",
-                style: AppTextStyle.headerTextStyle(),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                "Contact",
-                style: AppTextStyle.headerTextStyle(),
-              ),
+              AnimatedTextKit(
+                animatedTexts: [
+                  TyperAnimatedText(
+                    'Flutter Developer',
+                    textStyle:
+                        AppTextStyle.montserratStyle(color: Colors.lightBlue),
+                  ),
+                  TyperAnimatedText('Mobile Application Developer',
+                      textStyle: AppTextStyle.montserratStyle(
+                          color: Colors.lightBlue)),
+                  TyperAnimatedText('Web Application Developer',
+                      textStyle:
+                          AppTextStyle.montserratStyle(color: Colors.lightBlue)),
+                ],
+                pause: const Duration(milliseconds: 1000),
+                displayFullTextOnTap: true,
+                stopPauseOnTap: true,
+              )
             ],
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          top: size.height * 0.1,
-          // right: size.width * 0.2,
-          // left: size.width * 0.2,
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FadeInDown(
-                      duration: const Duration(milliseconds: 1200),
-                      child: Text(
-                        'Hello It\'s Me',
-                        style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    FadeInRight(
-                      duration: const Duration(milliseconds: 1400),
-                      child: Text(
-                        'MAHDI NOURI',
-                        style: AppTextStyle.headingStyles(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    FadeInLeft(
-                      duration: const Duration(milliseconds: 1400),
-                      child: Row(
-                        children: [
-                          Text(
-                            'I\'m a ',
-                            style: AppTextStyle.montserratStyle(
-                                color: Colors.white),
-                          ),
-                          AnimatedTextKit(
-                            animatedTexts: [
-                              TyperAnimatedText(
-                                'Flutter Developer',
-                                textStyle: AppTextStyle.montserratStyle(
-                                    color: Colors.lightBlue),
-                              ),
-                              TyperAnimatedText(
-                                'Mobile Developer',
-                                textStyle: AppTextStyle.montserratStyle(
-                                    color: Colors.lightBlue),
-                              ),
-                              TyperAnimatedText(
-                                'FrontEnd Developer',
-                                textStyle: AppTextStyle.montserratStyle(
-                                    color: Colors.lightBlue),
-                              ),
-                              TyperAnimatedText(
-                                'Freelancer',
-                                textStyle: AppTextStyle.montserratStyle(
-                                    color: Colors.lightBlue),
-                              ),
-                            ],
-                            pause: const Duration(milliseconds: 1000),
-                            displayFullTextOnTap: true,
-                            stopPauseOnTap: true,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    FadeInDown(
-                      duration: const Duration(milliseconds: 1600),
-                      child: SizedBox(
-                        width: size.width * 0.5,
-                        child: Text(
-                          "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
-                          style: AppTextStyle.normalStyle(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 22,
-                    ),
-                    FadeInUp(
-                      duration: const Duration(milliseconds: 1600),
-                      child: Row(
-                        children: [
-                          buildSocialButton(asset: AppAssets.facebook),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          buildSocialButton(asset: AppAssets.github),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          buildSocialButton(asset: AppAssets.instagram),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          buildSocialButton(asset: AppAssets.linkedIn),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          buildSocialButton(asset: AppAssets.twitter),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 18,
-                    ),
-                    FadeInUp(
-                      duration: const Duration(milliseconds: 1800),
-                      child: buildMaterialButton(onTap: () {}),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Image.asset(
-                  AppAssets.profile1,
-                  width: 360,
-                  height: 390,
-                ),
-              ],
+        SizedBox(height: 15.0),
+        FadeInDown(
+          duration: const Duration(milliseconds: 1600),
+          child: Expanded(
+            child: Text(
+              'In publishing and graphic design, Lorem ipsum is a placeholder '
+              'text commonly used to demonstrate the visual form of a document'
+              ' or a typeface without relying on meaningful content.',
+              style: AppTextStyle.normalStyle(),
             ),
-            AboutMe(),
-            MyServices(),
-            MyProjects(),
-            ContactUs()
-          ],
+          ),
         ),
-      ),
+        SizedBox(height: 22.0),
+        FadeInUp(
+          duration: const Duration(milliseconds: 1600),
+          child: SizedBox(
+            height: 48,
+            child: ListView.separated(
+              itemCount: socialButtons.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, child) => SizedBox(width: 8.0),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      if (value) {
+                        socialBI = index;
+                      } else {
+                        socialBI = null;
+                      }
+                    });
+                  },
+                  borderRadius: BorderRadius.circular(550.0),
+                  hoverColor: AppColors.themeColor,
+                  splashColor: AppColors.lawGreen,
+                  child: buildSocialButton(
+                      asset: socialButtons[index],
+                      hover: socialBI == index ? true : false),
+                );
+              },
+            ),
+          ),
+        ),
+        SizedBox(height: 18.0),
+        FadeInUp(
+          duration: const Duration(milliseconds: 1800),
+          child: MaterialBtn(onTap: () {}, txt: 'Download CV'),
+        ),
+      ],
     );
   }
 
-  MaterialButton buildMaterialButton({required VoidCallback onTap}) {
-    return MaterialButton(
-      onPressed: onTap,
-      color: AppColors.themeColor,
-      splashColor: AppColors.lawGreen,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
-      hoverColor: AppColors.aqua,
-      elevation: 6,
-      focusElevation: 12,
-      height: 46,
-      minWidth: 130,
-      child: Text("Download CV", style: AppTextStyle.headerTextStyle()),
-    );
-  }
-
-  Ink buildSocialButton({required String asset}) {
+  Ink buildSocialButton({required String asset, required bool hover}) {
     return Ink(
       width: 45,
       height: 45,
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.themeColor, width: 2.0),
-          color: AppColors.bgColor,
-          shape: BoxShape.circle),
+        border: Border.all(color: AppColors.themeColor, width: 2.0),
+        color: AppColors.bgColor,
+        shape: BoxShape.circle,
+      ),
       padding: const EdgeInsets.all(6),
-      child: InkWell(
-        onTap: () {},
-        radius: 50,
-        borderRadius: BorderRadius.circular(500.0),
-        splashColor: AppColors.lawGreen,
-        hoverColor: AppColors.aqua,
-        child: Image.asset(
-          asset,
-          width: 10,
-          height: 12,
-          color: AppColors.themeColor,
-          // fit: BoxFit.fill,
-        ),
+      child: Image.asset(
+        asset,
+        width: 10,
+        height: 12,
+        color: hover ? AppColors.bgColor : AppColors.themeColor,
+        // fit: BoxFit.fill,
       ),
     );
   }
