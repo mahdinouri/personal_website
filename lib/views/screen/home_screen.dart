@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               Text(
-                'And I\'m a ',
+                'I\'m a ',
                 style: AppTextStyle.montserratStyle(color: Colors.white),
               ),
               AnimatedTextKit(

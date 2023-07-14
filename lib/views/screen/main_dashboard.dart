@@ -28,7 +28,7 @@ class _MainDashBoardState extends State<MainDashBoard> {
     'Home',
     'About',
     'Services',
-    'Portfolio',
+    'Projects',
     'Contact',
   ];
 
@@ -74,7 +74,7 @@ class _MainDashBoardState extends State<MainDashBoard> {
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text('Portfolio'),
+                  const Text(''),
                   const Spacer(),
                   PopupMenuButton(
                     icon: Icon(
@@ -106,7 +106,7 @@ class _MainDashBoardState extends State<MainDashBoard> {
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text('Portfolio'),
+                  const Text(''),
                   const Spacer(),
                   SizedBox(
                     height: 30,
