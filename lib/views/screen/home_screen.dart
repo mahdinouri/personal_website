@@ -6,6 +6,10 @@ import 'package:personal_website/utils/app_colors.dart';
 import 'package:personal_website/utils/app_text_styles.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:personal_website/views/screen/about_me.dart';
+import 'package:personal_website/views/screen/contact_us.dart';
+import 'package:personal_website/views/screen/my_projects.dart';
+import 'package:personal_website/views/screen/my_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -69,9 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
-          top: size.height * 0.3,
-          right: size.width * 0.2,
-          left: size.width * 0.2,
+          top: size.height * 0.1,
+          // right: size.width * 0.2,
+          // left: size.width * 0.2,
         ),
         child: Column(
           children: [
@@ -86,7 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       duration: const Duration(milliseconds: 1200),
                       child: Text(
                         'Hello It\'s Me',
-                        style: AppTextStyle.montserratStyle(color: Colors.white),
+                        style:
+                            AppTextStyle.montserratStyle(color: Colors.white),
                       ),
                     ),
                     const SizedBox(
@@ -96,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       duration: const Duration(milliseconds: 1400),
                       child: Text(
                         'MAHDI NOURI',
-                        style: AppTextStyle.headingStyle(),
+                        style: AppTextStyle.headingStyles(),
                       ),
                     ),
                     const SizedBox(
@@ -108,8 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             'I\'m a ',
-                            style:
-                            AppTextStyle.montserratStyle(color: Colors.white),
+                            style: AppTextStyle.montserratStyle(
+                                color: Colors.white),
                           ),
                           AnimatedTextKit(
                             animatedTexts: [
@@ -150,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: size.width * 0.5,
                         child: Text(
                           "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
-                          style: AppTextStyle.noramlStyle(),
+                          style: AppTextStyle.normalStyle(),
                         ),
                       ),
                     ),
@@ -161,23 +166,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       duration: const Duration(milliseconds: 1600),
                       child: Row(
                         children: [
-                          buildSocialButton(asset: "assets/images.github.png"),
+                          buildSocialButton(asset: AppAssets.facebook),
                           const SizedBox(
                             width: 12,
                           ),
-                          buildSocialButton(asset: "assets/images.github.png"),
+                          buildSocialButton(asset: AppAssets.github),
                           const SizedBox(
                             width: 12,
                           ),
-                          buildSocialButton(asset: "assets/images.github.png"),
+                          buildSocialButton(asset: AppAssets.instagram),
                           const SizedBox(
                             width: 12,
                           ),
-                          buildSocialButton(asset: "assets/images.github.png"),
+                          buildSocialButton(asset: AppAssets.linkedIn),
                           const SizedBox(
                             width: 12,
                           ),
-                          buildSocialButton(asset: "assets/images.github.png"),
+                          buildSocialButton(asset: AppAssets.twitter),
                         ],
                       ),
                     ),
@@ -186,22 +191,31 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     FadeInUp(
                       duration: const Duration(milliseconds: 1800),
-                      child: buildMaterialButton(onTap: (){}),),
+                      child: buildMaterialButton(onTap: () {}),
+                    ),
                   ],
                 ),
-                const SizedBox(width: 20,),
-                Image.asset(AppAssets.profile1 , width: 360, height: 390,),
+                const SizedBox(
+                  width: 20,
+                ),
+                Image.asset(
+                  AppAssets.profile1,
+                  width: 360,
+                  height: 390,
+                ),
               ],
-            )
+            ),
+            AboutMe(),
+            MyServices(),
+            MyProjects(),
+            ContactUs()
           ],
         ),
       ),
     );
   }
 
-  MaterialButton buildMaterialButton({
-    required VoidCallback onTap
-}) {
+  MaterialButton buildMaterialButton({required VoidCallback onTap}) {
     return MaterialButton(
       onPressed: onTap,
       color: AppColors.themeColor,

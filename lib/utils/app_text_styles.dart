@@ -1,39 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class AppTextStyle {
-  static TextStyle headerTextStyle() {
+  static TextStyle headerTextStyle({Color color = Colors.white}) {
     return GoogleFonts.signikaNegative(
       fontSize: 18,
       fontWeight: FontWeight.w600,
-      color: Colors.white
+      color: color,
     );
   }
 
- static TextStyle montserratStyle({required Color color}) {
+  static TextStyle montserratStyle(
+      {required Color color, double fontSize = 24}) {
     return GoogleFonts.montserrat(
       color: color,
       fontWeight: FontWeight.w800,
-      fontSize: 24
+      fontSize: fontSize,
     );
- }
+  }
 
- static TextStyle headingStyle(){
+  static TextStyle headingStyles(
+      {double fontSize = 36, Color color = Colors.white}) {
     return GoogleFonts.rubikMoonrocks(
-      fontSize: 36,
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold,
+      color: color,
       letterSpacing: 2,
-      fontWeight: FontWeight.w800,
-      color: Colors.white,
     );
- }
+  }
 
- static TextStyle noramlStyle(){
-    return GoogleFonts.signikaNegative(
-      fontSize: 17,
+  static TextStyle normalStyle(
+      {Color color = Colors.white, double fontSize = 16}) {
+    return TextStyle(
       fontWeight: FontWeight.w500,
-      color: Colors.white,
-      letterSpacing: 1,
+      fontSize: fontSize,
+      color: color,
+      letterSpacing: 1.7,
+      height: 1.5,
     );
- }
+  }
+
+  static TextStyle comfortaaStyle() {
+    return GoogleFonts.comfortaa(
+        fontSize: 18, fontWeight: FontWeight.w800, color: Colors.grey);
+  }
 }
